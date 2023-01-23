@@ -39,6 +39,7 @@ class UsersTable extends Table
      */
     public function initialize(array $config): void
     {
+        
         parent::initialize($config);
 
         $this->setTable('users');
@@ -50,6 +51,18 @@ class UsersTable extends Table
         $this->hasMany('Articles', [
             'foreignKey' => 'user_id',
         ]);
+
+        // $this->hasOne('Articles', [
+        //     'foreignKey' => 'user_id',
+        // ]);
+
+        // $this->belongsTo('Articles', [
+        //     'foreignKey' => 'user_id',
+        // ]);
+
+        // $this->belongsToMany('Articles', [
+        //     'foreignKey' => 'user_id',
+        // ]);
     }
 
     /**

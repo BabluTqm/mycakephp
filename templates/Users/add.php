@@ -12,6 +12,10 @@ $this->Breadcrumbs->add([
     .error-message{
         color:red;
     }
+    .error{
+        color : red;
+        font-size : 12px;
+    }
 </style>
 
 <?php echo $cell = $this->cell('Inbox'); ?>
