@@ -1,0 +1,21 @@
+/**************************Search Box****************************/
+<?php echo $this->Form->create(null,['type'=>'get']);?>
+            <?php echo $this->Form->control('',['placeholder'=>'Search here..','id'=>'key','style'=>'width:250px; height:30px; border-top-style: hidden;
+            border-right-style:hidden; border-left-style: hidden; border-bottom-color:#d81b60;','class'=>"form-control mr-sm-2 input-group-outline",
+            ]);?>
+            <?php echo $this->Form->end();?>
+            </div>
+/**************************Search Box****************************/
+
+/******************Search Function***************/
+ <script>
+        $(document).ready(function() {
+        
+        $("#key").on("keyup", function() {  
+        var value = $(this).val().toLowerCase();  
+        $("tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+ </script>
