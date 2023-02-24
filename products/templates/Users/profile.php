@@ -48,8 +48,9 @@
       <div class="row">
         <!-- Left side columns -->
       
-          
-            <div class="col-9">
+        
+        <div class="col-9">
+                <?= $this->Flash->render() ?>
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                   <table class="table table-border table ">
@@ -60,37 +61,50 @@
             <!-- <h3><?= h($user->id) ?></h3> -->
 
             <tr>
-                    <th><?= __(' ') ?></th>
-                    <td><?= $this->Html->image($user->user_profile->profile_image ,['width'=>'100px','height'=>'100px']) ?></td>
+                    
+                </tr>
+                
+                <tr>
+                    
+                    <td><?= $this->Html->image($result->user_profile->profile_image ,['width'=>'120px','height'=>'120px']) ?></td>
+                    <td><?= $this->Html->link(__('Edit profile'), [ 'action' => 'edit' , $user->id ], ['class' => 'fa-solid fa-pencil float-right']) ?></td>
+                   
                 </tr>
 
                 <tr>
                     <th><?= __('First Name') ?></th>
-                    <td><?= h($user->user_profile->first_name) ?></td>
+                    <td><?= h($result->user_profile->first_name) ?></td>
                 </tr>
 
                 <tr>
                     <th><?= __('Last Name') ?></th>
-                    <td><?= h($user->user_profile->last_name) ?></td>
+                    <td><?= h($result->user_profile->last_name) ?></td>
                 </tr>
 
                 <tr>
                     <th><?= __('Contact') ?></th>
-                    <td><?= h($user->user_profile->contact) ?></td>
+                    <td><?= h($result->user_profile->contact) ?></td>
                 </tr>
             
                 <tr>
                     <th><?= __('Address') ?></th>
-                    <td><?= h($user->user_profile->address) ?></td>
+                    <td><?= h($result->user_profile->address) ?></td>
                 </tr>
 
                 <tr>
                     <th><?= __('Email') ?></th>
                     <td><?= h($user->email) ?></td>
                 </tr>
+
                 <tr>
                     <th><?= __('User Type') ?></th>
-                    <td><?= h($user->user_type) ?></td>
+                    <td><?php if($user->user_type == "1"){
+                        echo "User";
+                    } 
+                    else{
+                        echo "Admin";
+                    }
+                    ?></td> 
                 </tr>
                 <tr>
                     <th><?= __('Status') ?></th>

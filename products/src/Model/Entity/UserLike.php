@@ -6,17 +6,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * ProductCategory Entity
+ * UserLike Entity
  *
  * @property int $id
- * @property string $category_name
- * @property string $status
- * @property \Cake\I18n\FrozenTime $created_date
- * @property \Cake\I18n\FrozenTime $modified_date
+ * @property int $user_id
+ * @property int $product_id
+ * @property string $like
+ * @property string $dislike
  *
- * @property \App\Model\Entity\Product[] $products
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Product $product
  */
-class ProductCategory extends Entity
+class UserLike extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -28,11 +29,11 @@ class ProductCategory extends Entity
      * @var array<string, bool>
      */
     protected $_accessible = [
-        'category_name' => true,
-        'status' => true,
-        // 'created_date' => true,
-        // 'modified_date' => true,
-        // 'products' => true,
+        'user_id' => true,
+        'product_id' => true,
+        'likes' => true,
+        'dislikes' => true,
+        'user' => true,
+        'product' => true,
     ];
 }
-

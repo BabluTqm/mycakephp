@@ -58,7 +58,7 @@
                     <p class="text-center small"></p>
                   </div>
  
-                     <?= $this->Form->create($user , ['class' => 'row g-3' ]) ?>
+                     <?= $this->Form->create($user , ['class' => 'row g-3' , 'type' => 'file']) ?>
 
                     <div class="col-12">
                       <?=   $this->Form->control('user_profile.first_name' , ['required' => false , 'class' => 'form-control']); ?>
@@ -91,10 +91,10 @@
                     <div class="col-12">
                        <?= $this->Form->control('confirm_password' , ['type' => 'password' , 'class' => 'form-control'], ['required' => false  ]); ?>
                     </div>
-<!-- 
+
                     <div class="col-12">
-                       <?= $this->Form->control('user_profile.profile_image' , ['type' => 'file' , 'class' => 'form-control'], ['required' => false  ]); ?>
-                    </div> -->
+                       <?= $this->Form->control('user_profile.images' , ['type' => 'file' , 'class' => 'form-control'], ['required' => false  ]); ?>
+                    </div>
 
                     <div class="col-12">
                        

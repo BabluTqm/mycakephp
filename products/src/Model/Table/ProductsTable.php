@@ -51,6 +51,9 @@ class ProductsTable extends Table
         $this->hasMany('ProductComments', [
             'foreignKey' => 'product_id',
         ]);
+        $this->hasMany('UserLikes', [
+            'foreignKey' => 'product_id',
+        ]);
     }
 
     /**
@@ -73,6 +76,7 @@ class ProductsTable extends Table
         //     ->notEmptyString('product_description');
 
         // $validator
+        
         //     ->integer('product_category_id')
         //     ->notEmptyString('product_category_id');
 

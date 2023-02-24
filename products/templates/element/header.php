@@ -18,7 +18,8 @@
               <?php 
               
               if($result->user_type == 0){
-                echo "Welcome Admin<br>" .$result->email; 
+                echo "Welcome Admin<br>" ; 
+                echo $result->user_profile->first_name . " " . $result->user_profile->last_name;
               }else{
                 echo $result->user_profile->first_name . " " . $result->user_profile->last_name;
               }

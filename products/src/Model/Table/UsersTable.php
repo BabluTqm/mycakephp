@@ -50,6 +50,9 @@ class UsersTable extends Table
         $this->hasMany('UserProfile', [
             'foreignKey' => 'user_id',
         ]);
+        $this->hasMany('UserLikes', [
+            'foreignKey' => 'user_id',
+        ]);
         $this->hasOne('UserProfile');
        
 
@@ -70,8 +73,8 @@ class UsersTable extends Table
 
     $validator
         ->email('email')
-        ->requirePresence('email', 'create')
-        ->notEmptyString('email', 'Please enter your email')
+        // ->requirePresence('email', 'create')
+        // ->notEmptyString('email', 'Please enter your email')
         ->add('email', 'unique', [
             'rule' => 'validateUnique', 'provider' => 'table',
             'message' => '**Email already exist please enter another email',
@@ -88,26 +91,26 @@ class UsersTable extends Table
             'rule'    => ['notBlank'],
             'message' => '**Please enter Password',   
         ],
-        // 'characters' => [
-        //     'rule'    => ['custom', '/[A-Z]/'],
-        //     'message' => '**Please Enter atleast 1 Upper Case.'
-        // ],
-        // 'lowercase' => [
-        //     'rule'    => ['custom', '/[a-z]/'],
-        //     'message' => '**Please Enter atleast 1 Lower Case.'
-        // ],
-        // 'specialChar' => [
-        //     'rule'    => ['custom', '/[!@#$%&*_-]/'],
-        //     'message' => '**Please Enter atleast 1 Special Char.'
-        // ],
-        // 'Numberic' => [
-        //     'rule'    => ['custom', '/[0-9]/'],
-        //     'message' => '**Please Enter atleast 1 Numeric Value.'
-        // ],
-        // 'space' => [
-        //     'rule'    => ['custom', '/^\S+$/'],
-        //     'message' => '**Space Not Allowed.'
-        // ],
+        'characters' => [
+            'rule'    => ['custom', '/[A-Z]/'],
+            'message' => '**Please Enter atleast 1 Upper Case.'
+        ],
+        'lowercase' => [
+            'rule'    => ['custom', '/[a-z]/'],
+            'message' => '**Please Enter atleast 1 Lower Case.'
+        ],
+        'specialChar' => [
+            'rule'    => ['custom', '/[!@#$%&*_-]/'],
+            'message' => '**Please Enter atleast 1 Special Char.'
+        ],
+        'Numberic' => [
+            'rule'    => ['custom', '/[0-9]/'],
+            'message' => '**Please Enter atleast 1 Numeric Value.'
+        ],
+        'space' => [
+            'rule'    => ['custom', '/^\S+$/'],
+            'message' => '**Space Not Allowed.'
+        ],
         
     ]);
 

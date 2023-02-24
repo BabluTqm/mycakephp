@@ -61,7 +61,7 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
  
-                     <?= $this->Form->create($user , ['class' => 'row g-3' ]) ?>
+                     <?= $this->Form->create($user , ['class' => 'row g-3' , 'type'=>'file']) ?>
 
                     <div class="col-12">
                       <?=   $this->Form->control('user_profile.first_name' , ['required' => false , 'class' => 'form-control']); ?>
@@ -94,6 +94,12 @@
                     <div class="col-12">
                        <?= $this->Form->control('confirm_password' , ['type' => 'password' , 'class' => 'form-control'], ['required' => false  ]); ?>
                     </div>
+
+                    <div class="col-12">
+                       <?= $this->Form->control('user_profile.images', ['type'=>'file','required' => false , 'class' => 'form-control']); ?>
+                    </div>
+
+                  
 
                     <div class="col-12">
                        

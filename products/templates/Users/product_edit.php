@@ -67,7 +67,7 @@
                     echo $this->Form->control('product_description');
                     echo $this->Form->control('product_category_id', ['options' => $productCategories]);
                     echo $this->Form->control('product_image', ['type' => 'file']);
-                    
+                    echo $this->Html->image(h($product->product_image), array('width' => '250px'));
                     echo $this->Form->control('product_tags');
                     echo $this->Form->control('status');
                     // echo $this->Form->control('created_date');

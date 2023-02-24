@@ -17,7 +17,7 @@
   <!-- <li class="nav-heading">Pages</li> -->
 
   <li class="nav-item">
-      <?= $this->Html->link(__('Profile'), ['action' => ''], ['class' => 'nav-link collapsed bi  bi-person']) ?>
+      <?= $this->Html->link(__('Profile'), ['action' => 'profile',$result->id], ['class' => 'nav-link collapsed bi  bi-person']) ?>
   </li>
 
   <li class="nav-item">

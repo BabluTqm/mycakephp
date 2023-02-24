@@ -113,22 +113,19 @@
                 <?php
                     echo $this->Form->control('product_title'  );
                     echo $this->Form->control('product_description');
-                    echo $this->Form->control('product_category_id', ['options' => $productCategories]);
+                    // echo $this->Form->control('product_category_id', ['options' => $productCategories]);
                     
-/*
-
-                    echo ' <select name = "product_category">' ;
+                    echo ' <select name = "product_category_id">' ;
                     echo ' <option value = ""> Select Category </option>  ' ;
-                            foreach($productCategories as $productCategory) : ?>
-                             <option value="<?= h($productCategory->category_name) ?>"> </option>
+                            foreach($productCategories as $list) : ?>
+                             <option value="<?= h($list->id) ?>"> <?= h($list->category_name) ?></option>
                             <?php endforeach;
-
                             echo '</select>';
 
-*/
+
                     echo $this->Form->control('images' , ['type' => 'file']);
                     echo $this->Form->control('product_tags');
-                    echo $this->Form->control('status');
+                    //echo $this->Form->control('status');
                    
                 ?>
             </fieldset>

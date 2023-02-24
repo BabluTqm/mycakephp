@@ -51,6 +51,8 @@
         <!-- Left side columns -->
         <div class="col-lg-12">
           <div class="row">
+        <?= $this->Flash->render() ?>
+
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
@@ -75,10 +77,10 @@
 
                     <td>
                     <?php if($productCategory->status == 1) : ?>
-                    <?= $this->Form->postLink(__('Active'), ['action' => 'userStatus', $productCategory->id ,$productCategory->status], ['confirm' => __('Are you sure you want to Inactive # {0}?', $productCategory->id)]) ?>
+                    <?= $this->Form->postLink(__('Active'), ['action' => 'productCatStatus', $productCategory->id ,$productCategory->status], ['confirm' => __('Are you sure you want to Inactive # {0}?', $productCategory->id)]) ?>
 
                     <?php else: ?>
-                    <?= $this->Form->postLink(__('Inactive'), ['action' => 'userStatus', $productCategory->id ,$productCategory->status], ['confirm' => __('Are you sure you want to Active # {0}?', $productCategory->id)]) ?>
+                    <?= $this->Form->postLink(__('Inactive'), ['action' => 'productCatStatus', $productCategory->id ,$productCategory->status], ['confirm' => __('Are you sure you want to Active # {0}?', $productCategory->id)]) ?>
                     <?php endif ; ?>
 
 

@@ -57,11 +57,11 @@
             <?= $this->Form->create($productCategory) ?>
                 <?php
                     echo $this->Form->control('category_name');
-                    echo $this->Form->control('status');
+                   // echo $this->Form->control('status');
                    // echo $this->Form->control('created_date' );
                     //echo $this->Form->control('modified_date');
                 ?>
-           
+               <?= '<br>' ?>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>

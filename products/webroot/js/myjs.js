@@ -5,11 +5,49 @@ $(document).ready(function () {
       },
       "**No space please fill the Character"
     );
+
+
+    /*****************************Password Method ********************************/
+    jQuery.validator.addMethod("Uppercase",
+    function (value) {
+      return /[A-Z]/.test(value);
+    },
+    "**Your Password must contain at least one UpperCase Character"
+  );
+
+    jQuery.validator.addMethod("lowercase",
+    function (value) {
+      return /[a-z]/.test(value);
+    },
+    "**Your Password must contain at least one Lower Character"
+    );
+
+    jQuery.validator.addMethod("specialChar",
+    function (value) {
+      return /[!@#$%&*_-]/.test(value);
+    },
+    "**Your Password must contain at least one Special Character"
+    );
+
+    jQuery.validator.addMethod("Numberic",
+    function (value) {
+      return /[0-9]/.test(value);
+    },
+    "**Your Password must contain at least one Numeric Value"
+    );
+
+
+    /********************************************************************************/
+
+
   
     jQuery.validator.addMethod("lettersonly", 
     function(value, element) {
       return this.optional(element) || /^[a-z]+$/i.test(value);
     }, "**Please Letters only Not fill Space"); 
+
+
+
 
     //register form validation
     $("form").validate({
@@ -49,8 +87,15 @@ $(document).ready(function () {
         password: {
           required: true,
           noSpace: true,
-          //minlength: 4,
+          Uppercase: true,
+          lowercase: true,
+          specialChar: true,
+          Numberic: true,
+
+
+
         },
+
         confirm_password: {
           required: true,
           noSpace: true,
@@ -127,7 +172,12 @@ $(document).ready(function () {
        
         password: {
           required: " **Please enter a password",
-          minlength: " **Your password must consist of at least 6 characters",
+          minlength : " **Your password must consist of at least 6 characters",
+          // characters : '**Please Enter atleast 1 Upper Case.',
+          // lowercase : '**Please Enter atleast 1 Lower Case.',
+          // specialChar : '**Please Enter atleast 1 Special Char.',
+          // Numberic : '**Please Enter atleast 1 Numeric Value.',
+
         },
         confirm_password: {
           required: " **Please confirm your password",

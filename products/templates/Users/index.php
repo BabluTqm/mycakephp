@@ -54,72 +54,25 @@
           <div class="row">
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
-                
+           
+             
+                      
+                        <select name="category_id" id="status" class="form-control">
+                           <option value="" disabled selected>choose category</option>
+                           <option value="1">Active</option>
+                           <option value="0">Inactive</option>
+                        </select>
+                      
+                     
+
+
                 <div class="card-body">
                   <?= $this->Html->link(__('Add New User'), ['action' => 'adduser'], ['class' => 'btn btn-danger m-5 p-2 float-right']) ?>
-                  <table class="table table-border datatable">
-                
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
-                    <th><?= $this->Paginator->sort('user_type') ?></th>
-                    <th><?= $this->Paginator->sort('status') ?></th>
-                    <th><?= $this->Paginator->sort('Change Statu') ?></th>
-                    <th><?= $this->Paginator->sort('created_date') ?></th>
-                    <th><?= $this->Paginator->sort('modified_date') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                  
-                </tr>
-            </thead>
-            <tbody>
-                <?php $count = 0; ?>
-                <?php foreach ($users as $user): 
-          
-         
+                  <div class="ajaxdiv">
 
-                    if($result->id == $user->id){
-                        continue;
-                    }
-                  
-                    ?>
-
-                <tr>
-                    <td><?=  ++$count ?></td>
-                    <td><?= h($user->email) ?></td>
-                    <td><?php if($user->user_type=="1"){
-                        echo "User";
-                    } 
-                    else{
-                        echo "Admin";
-                    }
-                    ?></td> 
-                   
-
-                    <td>
-                    <?php if($user->status == 1) : ?>
-                    <?= $this->Form->postLink(__('Active'), ['action' => 'userStatus', $user->id ,$user->status], ['confirm' => __('Are you sure you want to Inactive # {0}?', $user->id)]) ?>
-
-                    <?php else: ?>
-                    <?= $this->Form->postLink(__('Inactive'), ['action' => 'userStatus', $user->id ,$user->status], ['confirm' => __('Are you sure you want to Active # {0}?', $user->id)]) ?>
-                    <?php endif ; ?>
-
-
-                    </td>
-
-                      
-
-                    <td><?= h($user->created_date) ?></td>
-                    <td><?= h($user->modified_date) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                  <?= $this->element('ajaxtable'); ?>
+                 
+                </div>
             <div class="paginator">
             <ul class="pagination">
                 <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -168,12 +121,51 @@
 
         <script>
         $(document).ready(function() {
+
+        $('select').on('change', function() {
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': csrfToken // this is defined in app.php as a js variable
+        //     }
+        // });
+        
+        var data = $('#status').val();
+        //alert(data);
+        $.ajax({
+            url: "http://localhost:8765/users/index",
+            data: {'status':data},
+            type: "json",
+            method: "get",
+            success:function(response){
+                // code will work in case of json retun from the ajax start here
+                res = JSON.parse(response);
+                var tabel_html = '<table><thead><tr><th>id</th><th>Email</th><th>	User Type</th><th>Status</th><th>Profle Image</th><th>Created Date</th><th>Modified Date</th><th>Actions</th></tr></thead>';
+                tabel_html += '<tbody>';
+                $.each(res, function (key, val) {
+                        tabel_html += '<tr><td>'+val.id+'</td><td>'+val.email+'</td><td>'+val.user_type+'</td><td>'+val.status+'</td><td>'+val.user_profile.profile_image+'</td><td>'+val.created_date+'</td><td>'+val.modified_date+'</td></tr>';
+                    
+                })
+                tabel_html +='</tbody>';
+                tabel_html +='</table>';
+                $('.datatable').html(tabel_html);
+                 // code will work in case of json retun from the ajax end here
+                 
+                // code will work in case cakephp element render start here \
+                // $('.ajaxdiv').html(response);
+                // code will work in case cakephp element render end here 
+            }
+        });
+    });
+
+/************User Status**************/
         $('.statuscheck').click(function(){
         var status = $(this).val();
         var id = $(this).prev('a').click();
 
         })
         });
+/************User Status**************/
+
         </script>
 
 
@@ -181,5 +173,6 @@
 </body>
 
 </html>
+
 
 

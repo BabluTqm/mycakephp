@@ -55,28 +55,30 @@
                 <div class="card-body">
                   <table class="table table-border table table-striped">
 
-                  <?= $this->Form->create($user) ?>
+                  <?= $this->Form->create($res ,['type'=>'file']) ?>
                   
                 <?php
                     echo $this->Form->control('email');
-                    // echo $this->Form->control('password');
-                    echo $this->Form->control('user_type');
-                    echo $this->Form->control('status'  );
-                   
-                   /// echo $this->Form->control('modified_date');
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
-                  
-                    </table>
-
+                     echo $this->Form->control('user_profile.first_name');
+                     echo $this->Form->control('user_profile.last_name');
+                     echo $this->Form->control('user_profile.contact');
+                     echo $this->Form->control('user_profile.address');
+                      echo $this->Form->control('user_profile.images',['type'=>'file']);
+                     echo $this->Html->image($res->user_profile->profile_image,['width'=>'100px','height'=>'100px']);
+                    echo '<br>';
+                    echo '<br>';
+                          ?>
+                      </fieldset>
+                      <?= $this->Form->button(__('Submit')) ?>
+                      <?= $this->Form->end() ?>
+                  </div>
+                            
+                  </table>
                 </div>
               </div>
-            </div><!-- End Recent Sales -->
+            </div>
           </div>
-        </div><!-- End Left side columns -->
+        </div>
       </div>
     </section>
 

@@ -48,6 +48,12 @@
   <?= $this->Html->link(__('DashBoard'), ['action' => 'home'], ['class' => 'nav-link collapsed bi  bi-grid']) ?>
 
   </li>
+
+
+  <li class="nav-item">
+  <?= $this->Html->link(__('All User'), ['action' => 'index'], ['class' => 'nav-link collapsed bi  bi-people']) ?>
+
+  </li>
  
   <!-- <li class="nav-heading">Pages</li> -->
 

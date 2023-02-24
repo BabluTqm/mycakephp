@@ -45,36 +45,10 @@
 <body>
 
 <?= $this->element('header'); ?>
+<?= $this->element('aside'); ?>
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
 
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <?= $this->Html->link(__('DashBoard'), ['action' => 'home'], ['class' => 'nav-link collapsed bi  bi-grid']) ?>
-
-      </li>
-
-      <li class="nav-item">
-  <?= $this->Html->link(__('All Users'), ['action' => 'index'], ['class' => 'nav-link collapsed bi  bi-people']) ?>
-
-  </li>
-
-      <li class="nav-item">
-        <?= $this->Html->link(__('Profile'), ['action' => ''], ['class' => 'nav-link collapsed bi  bi-person']) ?>
-      </li>
-
-      <li class="nav-item">
-        <?= $this->Html->link(__('Product'), ['action' => 'productIndex'], ['class' => 'nav-link collapsed bi  bi-card-list']) ?>
-      </li><!-- End Register Page Nav -->
-
-      <li class="nav-item">
-        <?= $this->Html->link(__('Logout'), ['action' => 'logout'], ['class' => 'nav-link collapsed bi bi-box-arrow-in-right']) ?>
-      </li>
-    </ul>
-  </aside>
-  <!-- ======= Sidebar ======= -->
  
   <main id="main" class="main">
 
@@ -112,13 +86,40 @@
                 
                   <?php foreach($product->product_comments as $comment) {
                   ?>
-                   <h5> <br><?= h($comment->comments."  " .$comment->created_date) ?> </h5>
-                
 
-                  <?php } ?>
+
+                  <?php 
+                        $dt = $comment->created_date;
+                        $tz = new DateTimeZone('Asia/Kolkata');
+                        $dt->setTimezone($tz);                        
+                  ?>
+
+                    <?php
+                      $cre_time = $comment->created_date;
+                      $date = new DateTime($cre_time, new DateTimeZone('UTC'));
+                      $date->setTimezone(new DateTimeZone("Asia/Kolkata"));
+                      $cre_time= $date->format('h:i:a');  
+
+                      
+                    ?>
+                    
+
+                   <h5> <br><?= h($comment->comments ." ".$cre_time)  ; ?> </h5>
+              
+                  <?php } 
+
+                  $a = 0; $b = 0;
+                  foreach($product->user_likes as $likes){
+                    $a = $a + $likes->likes;
+                    $b = $b + $likes->dislikes;
+                  }
+                   ?>
+ <hr>
+                  <?= $this->Html->link(__(''), [ 'controller' => 'UserLikes','action' => 'like',$product->id], ['class' => 'fas fa-thumbs-up add-like','data-id'=>$product->id]) ?>
+                  <?php echo $a ?>
+                  <?= $this->Html->link(__(''), [ 'controller' => 'UserLikes','action' => 'dislike',$product->id ], ['class' => 'fa-solid fa-sharp fa-thumbs-down']) ?>
+                  <?php echo $b ?>
                   
-
-
                   <?= $this->Form->create($productComment) ?>
                
                     <?php
@@ -128,7 +129,7 @@
                    ?>
                      <!-- <input type="hidden" name="post_id" value="<?php echo $post->id; ?>"> -->
             
-                  <?= $this->Form->button(__('Submit')) ?>
+                  <?= $this->Form->button(__('Comment'), ['class' => 'bi bi-send-fill']) ?>
                   <?= $this->Form->end() ?>
                 </div>
               </div>
@@ -138,7 +139,7 @@
 
     </section>
 
-
+    
 
 
 

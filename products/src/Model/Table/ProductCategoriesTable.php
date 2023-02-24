@@ -62,10 +62,10 @@ class ProductCategoriesTable extends Table
             ->requirePresence('category_name', 'create')
             ->notEmptyString('category_name');
 
-        $validator
-            ->scalar('status')
-            ->requirePresence('status', 'create')
-            ->notEmptyString('status');
+        // $validator
+        //     ->scalar('status')
+        //     ->requirePresence('status', 'create')
+        //     ->notEmptyString('status');
 
         // $validator
         //     ->dateTime('created_date')

@@ -61,6 +61,7 @@ class ProductCategoriesController extends AppController
 
     /**
      * Edit method
+     
      *
      * @param string|null $id Product Category id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
