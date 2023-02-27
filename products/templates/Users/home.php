@@ -39,6 +39,10 @@
       width: 100%;
       height: 400px;
     }
+    #cart{
+      height: 30px;
+      
+    }
   </style>
 </head>
 
@@ -46,6 +50,14 @@
 
 <?= $this->element('header'); ?>
 <?= $this->element('aside'); ?>
+
+<div id="cart">
+<?= $this->Html->link(__('View Cart'), [ 'controller' => 'Cart','action' => 'index' ,'class' => 'float-end']) ?>
+
+ 
+
+
+</div>
 
   <!-- ======= Sidebar ======= -->
 
@@ -87,13 +99,6 @@
                   <?php foreach($product->product_comments as $comment) {
                   ?>
 
-
-                  <?php 
-                        $dt = $comment->created_date;
-                        $tz = new DateTimeZone('Asia/Kolkata');
-                        $dt->setTimezone($tz);                        
-                  ?>
-
                     <?php
                       $cre_time = $comment->created_date;
                       $date = new DateTime($cre_time, new DateTimeZone('UTC'));
@@ -114,7 +119,7 @@
                     $b = $b + $likes->dislikes;
                   }
                    ?>
- <hr>
+                  <hr>
                   <?= $this->Html->link(__(''), [ 'controller' => 'UserLikes','action' => 'like',$product->id], ['class' => 'fas fa-thumbs-up add-like','data-id'=>$product->id]) ?>
                   <?php echo $a ?>
                   <?= $this->Html->link(__(''), [ 'controller' => 'UserLikes','action' => 'dislike',$product->id ], ['class' => 'fa-solid fa-sharp fa-thumbs-down']) ?>
@@ -130,7 +135,10 @@
                      <!-- <input type="hidden" name="post_id" value="<?php echo $post->id; ?>"> -->
             
                   <?= $this->Form->button(__('Comment'), ['class' => 'bi bi-send-fill']) ?>
+                  <?= $this->Html->link(__('Add to Cart'), [ 'controller' => 'Cart','action' => 'add',$product->id ]) ?>
+
                   <?= $this->Form->end() ?>
+                 
                 </div>
               </div>
             </div>
