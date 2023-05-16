@@ -9,13 +9,21 @@
 
 /******************Search Function***************/
  <script>
-        $(document).ready(function() {
-        
-        $("#key").on("keyup", function() {  
-        var value = $(this).val().toLowerCase();  
-        $("tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-      });
+  $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr:not('.no-records')").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
+    var trSel =  $("#myTable tr:not('.no-records'):visible")
+    // Check for number of rows & append no records found row
+    if(trSel.length == 0){
+        $("#myTable").html('<tr class="no-records"><td colspan="3">No record found.</td></tr>')
+    }
+    else{
+        $('.no-records').remove()
+    }
+
+  });
+});
  </script>
