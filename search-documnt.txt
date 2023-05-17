@@ -29,4 +29,5 @@
  </script>
  
  All Data in one Variable:-
-  $all_contractor = $this->Users->find('all', array('order' => 'Users.created_at DESC', 'user_type IN' =>  [2, 3, 4]))->contain(['UserProfile'])->all();
+          $all_contractor  = $this->Users->find('all')->contain(['UserProfile'])->where(['user_type IN' => [2, 3, 4]])->order(['Users.created_at' => 'DESC'])->all();
+
